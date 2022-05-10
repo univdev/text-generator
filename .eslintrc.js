@@ -6,6 +6,7 @@ module.exports = {
     "extends": [
         "eslint:recommended",
         "plugin:vue/essential",
+        "plugin:vue/vue3-recommended",
         "plugin:@typescript-eslint/recommended",
         "prettier"
     ],
@@ -20,7 +21,9 @@ module.exports = {
         "@typescript-eslint"
     ],
     "rules": {
-        "vue/order-tags-component": [
+        "@typescript-eslint/no-var-requires": "off",
+        "vue/no-v-model-argument": "off",
+        "vue/component-tags-order": [
             "error",
             {
                 order: ["style", "template", "script"]
