@@ -1,16 +1,16 @@
-# Vue 3 + TypeScript + Vite
+# 텍스트 이미지 변환기
+## 개요
+입력한 텍스트를 선택한 스타일을 입혀서 텍스트로 변환해주는 서비스입니다.
+## 탄생 배경
+Github README에는 텍스트에 색상을 입히는 행위가 금지되어 있습니다.  
+보안의 일종같은데, 가끔 README를 예쁘게 꾸미고 싶어지는건 어쩔 수 없죠.  
+그래서 색상 텍스트를 이미지로 대체하면 어떨까 싶어서 만든 서비스입니다.
+## 이용해보기
+['텍스트 이미지 변환기'로 바로가기][변환기]
+## 개발 환경
+- Vue3
+- Vite
+- Typescript
+- Less
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
-
-## Recommended IDE Setup
-
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
-
-## Type Support For `.vue` Imports in TS
-
-Since TypeScript cannot handle type information for `.vue` imports, they are shimmed to be a generic Vue component type by default. In most cases this is fine if you don't really care about component prop types outside of templates. However, if you wish to get actual prop types in `.vue` imports (for example to get props validation when using manual `h(...)` calls), you can enable Volar's Take Over mode by following these steps:
-
-1. Run `Extensions: Show Built-in Extensions` from VS Code's command palette, look for `TypeScript and JavaScript Language Features`, then right click and select `Disable (Workspace)`. By default, Take Over mode will enable itself if the default TypeScript extension is disabled.
-2. Reload the VS Code window by running `Developer: Reload Window` from the command palette.
-
-You can learn more about Take Over mode [here](https://github.com/johnsoncodehk/volar/discussions/471).
+[변환기]: https://text-generator.funapp.day
