@@ -63,10 +63,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, PropType, Ref, ref } from 'vue';
+import { defineComponent, PropType, Ref, ref } from 'vue';
 import type { ComponentSize } from 'element-plus';
-import TextGeneratorForm from '@/components/molecules/TextGeneratorForm.vue';
-import TextRenderer from '@/components/atoms/TextRenderer.vue';
+import TextGeneratorForm from '@/components/organisms/TextGeneratorForm.vue';
+import TextRenderer from '@/components/organisms/TextRenderer.vue';
 import GeneratorController from '@/components/molecules/GeneratorController.vue';
 import GithubButton from '@/components/atoms/GithubButton.vue';
 

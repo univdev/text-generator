@@ -7,25 +7,25 @@
 
 <template>
   <div class="generator-controller">
-    <el-button
-      type="primary"
+    <save-button
       @click="onClickSaveButton"
-    >
-      <i class="mdi mdi-content-save" />
-    </el-button>
-    <el-button
-      type="danger"
+    />
+    <reset-button
       @click="onClickResetButton"
-    >
-      <i class="mdi mdi-close" />
-    </el-button>
+    />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent } from 'vue';
+import SaveButton from '@/components/atoms/SaveButton.vue';
+import ResetButton from '@/components/atoms/ResetButton.vue';
 
 export default defineComponent({
+  components: {
+    SaveButton,
+    ResetButton,
+  },
   emits: ['save', 'reset'],
   setup(_, { emit }) {
     const onClickSaveButton = () => {
