@@ -1,5 +1,11 @@
 <style lang="less" scoped>
-
+  .text-generator {
+    .github-button {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+    }
+  }
 </style>
 
 <template>
@@ -29,6 +35,11 @@
         />
       </el-col>
     </el-row>
+    <github-button
+      class="github-button --el-box-shadow"
+      size="large"
+      @click="onClickGithubButton"
+    />
   </div>
 </template>
 
@@ -36,10 +47,12 @@
 import { defineComponent, PropType } from 'vue';
 import type { ComponentSize } from 'element-plus';
 import TextGeneratorForm from '@/components/molecules/TextGeneratorForm.vue';
+import GithubButton from '@/components/atoms/GithubButton.vue';
 
 export default defineComponent({
   components: {
     TextGeneratorForm,
+    GithubButton,
   },
   props: {
     text: {
@@ -130,11 +143,19 @@ export default defineComponent({
   },
   emits: [
     ...TextGeneratorForm.emits as string[],
+    'click:github-button',
   ],
-  methods: {
-    onUpdateValue(key: string, value: string | number | boolean) {
-      this.$emit(`update:${key}`, value);
-    },
+  setup(_, { emit }) {
+    const onClickGithubButton = (e: MouseEvent) => {
+      emit('click:github-button', e);
+    };
+    const onUpdateValue = (key: string, value: string | number | boolean) => {
+      emit(`update:${key}`, value);
+    };
+    return {
+      onClickGithubButton,
+      onUpdateValue,
+    };
   },
 });
 </script>

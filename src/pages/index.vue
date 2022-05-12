@@ -3,6 +3,7 @@
     v-model:text="payload.text"
     v-model:font-size="payload.fontSize"
     v-model:background-color="payload.backgroundColor"
+    @click:github-button="onClickGithub"
   />
 </template>
 
@@ -22,9 +23,12 @@ export default defineComponent({
       text: '텍스트' as string,
       fontSize: 14 as number,
     });
-
+    const onClickGithub = () => {
+      window.open(import.meta.env.VITE_GITHUB_REPOSITORY_URI);
+    };
     return {
       payload,
+      onClickGithub,
     };
   },
 });

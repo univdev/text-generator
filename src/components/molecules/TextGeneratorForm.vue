@@ -72,15 +72,6 @@ import { defineComponent, PropType } from 'vue';
 import type { ComponentSize } from 'element-plus';
 
 export default defineComponent({
-  emits: [
-    'update:text',
-    'update:font-size',
-    'update:color',
-    'update:italic',
-    'update:bold',
-    'update:underline',
-    'update:background-color',
-  ],
   props: {
     text: {
       type: String as PropType<string>,
@@ -168,10 +159,22 @@ export default defineComponent({
       default: '글씨 효과',
     },
   },
-  methods: {
-    onInput(key: string, value: string | boolean | number) {
-      this.$emit(`update:${key}`, value);
-    },
+  emits: [
+    'update:text',
+    'update:font-size',
+    'update:color',
+    'update:italic',
+    'update:bold',
+    'update:underline',
+    'update:background-color',
+  ],
+  setup(_, { emit }) {
+    const onInput = (key: string, value: string | boolean | number) => {
+      emit(`update:${key}`, value);
+    };
+    return {
+      onInput,
+    };
   },
 });
 </script>
