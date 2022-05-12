@@ -71,6 +71,15 @@
 import { defineComponent, PropType } from 'vue';
 import type { ComponentSize } from 'element-plus';
 
+export type ChangableValueKeyTypes = 
+  'text' | 
+  'font-size' |
+  'color' |
+  'italic' |
+  'bold' |
+  'underline' |
+  'background-color';
+
 export default defineComponent({
   props: {
     text: {
@@ -169,7 +178,7 @@ export default defineComponent({
     'update:background-color',
   ],
   setup(_, { emit }) {
-    const onInput = (key: string, value: string | boolean | number) => {
+    const onInput = (key: ChangableValueKeyTypes, value: string | boolean | number) => {
       emit(`update:${key}`, value);
     };
     return {
