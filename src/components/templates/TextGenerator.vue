@@ -59,12 +59,17 @@
       size="large"
       @click="onClickGithubButton"
     />
+    <download-dialog
+      v-model:visible="isVisibleDownloadDialog"
+      :download-uri="downloadUri"
+    />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, PropType, Ref, ref } from 'vue';
 import type { ComponentSize } from 'element-plus';
+import DownloadDialog from '@/components/organisms/DownloadDialog.vue';
 import TextGeneratorForm from '@/components/organisms/TextGeneratorForm.vue';
 import TextRenderer from '@/components/organisms/TextRenderer.vue';
 import GeneratorController from '@/components/molecules/GeneratorController.vue';
@@ -74,6 +79,7 @@ export type RendererType = InstanceType<typeof TextRenderer>;
 
 export default defineComponent({
   components: {
+    DownloadDialog,
     TextRenderer,
     TextGeneratorForm,
     GeneratorController,
@@ -173,6 +179,8 @@ export default defineComponent({
     'save',
   ],
   setup(props, { emit }) {
+    let downloadUri = ref('');
+    const isVisibleDownloadDialog = ref(false);
     const renderer: Ref<RendererType | undefined> = ref();
     const onClickGithubButton = (e: MouseEvent) => {
       emit('click:github-button', e);
@@ -181,14 +189,17 @@ export default defineComponent({
       emit(`update:${key}`, value);
     };
     const onSave = () => {
-      const url = renderer.value?.crop();
-      emit('save', url);
+      const uri = renderer.value?.crop() as string;
+      downloadUri.value = uri;
+      isVisibleDownloadDialog.value = true;
     };
     const onReset = () => {
       emit('reset');
     };
     return {
+      downloadUri,
       renderer,
+      isVisibleDownloadDialog,
       onClickGithubButton,
       onUpdateValue,
       onSave,
