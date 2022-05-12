@@ -8,6 +8,8 @@
     v-model:bold="payload.isBold"
     v-model:underline="payload.isUnderline"
     @click:github-button="onClickGithub"
+    @save="onSave"
+    @reset="onResetPayload"
   />
 </template>
 
@@ -21,6 +23,16 @@ export default defineComponent({
     TextGeneratorTemplate,
   },
   setup() {
+    const download = (uri: string) => {
+      const link = document.createElement('a');
+      link.download = '이미지.png';
+      link.href = uri;
+      link.click();
+      link.remove();
+    };
+    const onSave = (uri: string) => {
+      download(uri);
+    };
     const payload = reactive({
       backgroundColor: '#FFF' as string,
       color: '#000' as string,
@@ -33,9 +45,20 @@ export default defineComponent({
     const onClickGithub = () => {
       window.open(import.meta.env.VITE_GITHUB_REPOSITORY_URI);
     };
+    const onResetPayload = () => {
+      payload.backgroundColor = '#FFF';
+      payload.color = '#000';
+      payload.text = '텍스트';
+      payload.fontSize = 14;
+      payload.isBold = false;
+      payload.isItalic = false;
+      payload.isUnderline = false;
+    };
     return {
       payload,
       onClickGithub,
+      onResetPayload,
+      onSave,
     };
   },
 });

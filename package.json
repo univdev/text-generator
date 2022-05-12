@@ -10,9 +10,11 @@
   "dependencies": {
     "@types/node": "^17.0.31",
     "element-plus": "^2.2.0",
+    "kebab-case": "^1.0.1",
     "less": "^4.1.2",
     "less-loader": "^10.2.0",
     "path": "^0.12.7",
+    "trim-canvas": "^0.1.2",
     "vue": "^3.2.25"
   },
   "devDependencies": {

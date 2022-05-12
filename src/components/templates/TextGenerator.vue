@@ -20,6 +20,7 @@
         :xl="8"
       >
         <text-renderer
+          ref="renderer"
           class="renderer"
           :font-size="fontSize"
           :text="text"
@@ -47,6 +48,10 @@
           @update:italic="onUpdateValue('italic', $event)"
           @update:underline="onUpdateValue('underline', $event)"
         />
+        <generator-controller
+          @save="onSave"
+          @reset="onReset"
+        />
       </el-col>
     </el-row>
     <github-button
@@ -58,16 +63,20 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue';
+import { defineComponent, onMounted, PropType, Ref, ref } from 'vue';
 import type { ComponentSize } from 'element-plus';
 import TextGeneratorForm from '@/components/molecules/TextGeneratorForm.vue';
 import TextRenderer from '@/components/atoms/TextRenderer.vue';
+import GeneratorController from '@/components/molecules/GeneratorController.vue';
 import GithubButton from '@/components/atoms/GithubButton.vue';
+
+export type RendererType = InstanceType<typeof TextRenderer>;
 
 export default defineComponent({
   components: {
     TextRenderer,
     TextGeneratorForm,
+    GeneratorController,
     GithubButton,
   },
   props: {
@@ -160,17 +169,30 @@ export default defineComponent({
   emits: [
     ...TextGeneratorForm.emits as string[],
     'click:github-button',
+    'reset',
+    'save',
   ],
-  setup(_, { emit }) {
+  setup(props, { emit }) {
+    const renderer: Ref<RendererType | undefined> = ref();
     const onClickGithubButton = (e: MouseEvent) => {
       emit('click:github-button', e);
     };
     const onUpdateValue = (key: string, value: string | number | boolean) => {
       emit(`update:${key}`, value);
     };
+    const onSave = () => {
+      const url = renderer.value?.crop();
+      emit('save', url);
+    };
+    const onReset = () => {
+      emit('reset');
+    };
     return {
+      renderer,
       onClickGithubButton,
       onUpdateValue,
+      onSave,
+      onReset,
     };
   },
 });
