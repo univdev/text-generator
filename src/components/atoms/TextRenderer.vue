@@ -167,7 +167,7 @@ export default defineComponent({
       canvas.height = h;
       ctx.putImageData(cut, 0, 0);
 
-      return canvas.toDataURL();  //open cropped image in a new window
+      return canvas.toDataURL();
     }
     onMounted(() => {
       intializeCanvas(canvas.value as HTMLCanvasElement);
