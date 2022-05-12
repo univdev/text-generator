@@ -3,6 +3,10 @@
     v-model:text="payload.text"
     v-model:font-size="payload.fontSize"
     v-model:background-color="payload.backgroundColor"
+    v-model:color="payload.color"
+    v-model:italic="payload.isItalic"
+    v-model:bold="payload.isBold"
+    v-model:underline="payload.isUnderline"
     @click:github-button="onClickGithub"
   />
 </template>
@@ -18,10 +22,13 @@ export default defineComponent({
   },
   setup() {
     const payload = reactive({
-      backgroundColor: '#FF0000' as string,
-      color: '#F00' as string,
+      backgroundColor: '#FFF' as string,
+      color: '#000' as string,
       text: '텍스트' as string,
       fontSize: 14 as number,
+      isBold: false as boolean,
+      isItalic: false as boolean,
+      isUnderline: false as boolean,
     });
     const onClickGithub = () => {
       window.open(import.meta.env.VITE_GITHUB_REPOSITORY_URI);

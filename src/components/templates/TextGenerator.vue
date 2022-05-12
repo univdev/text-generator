@@ -1,5 +1,8 @@
 <style lang="less" scoped>
   .text-generator {
+    .renderer {
+      margin-bottom: 16px;
+    }
     .github-button {
       position: fixed;
       right: 20px;
@@ -16,6 +19,16 @@
       <el-col
         :xl="8"
       >
+        <text-renderer
+          class="renderer"
+          :font-size="fontSize"
+          :text="text"
+          :color="color"
+          :background-color="backgroundColor"
+          :bold="bold"
+          :italic="italic"
+          :underline="underline"
+        />
         <text-generator-form
           :text="text"
           :text-placeholder="textPlaceholder"
@@ -28,6 +41,7 @@
           :background-color="backgroundColor"
           @update:text="onUpdateValue('text', $event)"
           @update:font-size="onUpdateValue('font-size', $event)"
+          @update:color="onUpdateValue('color', $event)"
           @update:background-color="onUpdateValue('background-color', $event)"
           @update:bold="onUpdateValue('bold', $event)"
           @update:italic="onUpdateValue('italic', $event)"
@@ -47,10 +61,12 @@
 import { defineComponent, PropType } from 'vue';
 import type { ComponentSize } from 'element-plus';
 import TextGeneratorForm from '@/components/molecules/TextGeneratorForm.vue';
+import TextRenderer from '@/components/atoms/TextRenderer.vue';
 import GithubButton from '@/components/atoms/GithubButton.vue';
 
 export default defineComponent({
   components: {
+    TextRenderer,
     TextGeneratorForm,
     GithubButton,
   },
